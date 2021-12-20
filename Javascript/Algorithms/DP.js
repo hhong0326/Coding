@@ -24,7 +24,7 @@
 // };
 
 
-// Top down - Memorization
+// Top down - Memoization
 
 var climbStairs = function(n) {
     let memo = new Array(50).fill(0);
