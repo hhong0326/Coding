@@ -12,8 +12,8 @@ func main() {
 	reader := bufio.NewReader(os.Stdin)
 	writer := bufio.NewWriter(os.Stdout)
 
-	// var testCaseLength int
-	// fmt.Fscanln(reader, &testCaseLength)
+	var testCaseLength int
+	fmt.Fscanln(reader, &testCaseLength)
 
 	var n int
 	fmt.Fscanln(reader, &n)

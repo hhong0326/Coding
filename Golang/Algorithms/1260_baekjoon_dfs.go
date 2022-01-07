@@ -1,67 +1,76 @@
 package main
 
-func bfs(lines [][]int) {
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
-}
+var (
+	graph   [][]int
+	visited []bool
+	writer  *bufio.Writer
+)
 
 func main() {
+	reader := bufio.NewReader(os.Stdin)
+	writer = bufio.NewWriter(os.Stdout)
+	defer writer.Flush()
 
-	// reader := bufio.NewReader(os.Stdin)
-	// writer := bufio.NewWriter(os.Stdout)
+	var n, m, v int
+	fmt.Fscanln(reader, &n, &m, &v)
 
-	// var testCaseLength int
-	// fmt.Fscanln(reader, &testCaseLength)
+	graph = make([][]int, n+1)
+	for i := range graph {
+		graph[i] = make([]int, n+1)
+	}
+	visited = make([]bool, n+1)
 
-	// num1, num2 선언
-	// var num1, num2 int
-	var lines [][]int
+	for i := 0; i < m; i++ {
+		var vertex1, vertex2 int
+		fmt.Fscanln(reader, &vertex1, &vertex2)
+		graph[vertex1][vertex2] = 1
+		graph[vertex2][vertex1] = 1
+	}
 
-	lines = append(lines, []int{1, 2}, []int{1, 3}, []int{1, 4}, []int{2, 4}, []int{3, 4})
+	dfs(v)
+	fmt.Fprintln(writer, "")
 
-	visited := make([][]bool, 5)
+	resetVisited()
+	bfs(v)
+	fmt.Fprintln(writer, "")
+}
+
+func dfs(v int) {
+	visited[v] = true // dfs에 들어오면 방문했다고 판단
+	fmt.Fprintf(writer, "%d ", v)
+
+	for i := 0; i < len(graph[v]); i++ {
+		if graph[v][i] == 1 && !visited[i] { // 연결되어 있고 방문하지 않은 경우
+			dfs(i) // 재귀함수 호출
+		}
+	}
+}
+
+func bfs(v int) {
+	visited[v] = true
+	queue := []int{v}
+
+	for len(queue) != 0 {
+		front := queue[0]
+		fmt.Fprintf(writer, "%d ", front)
+		queue = queue[1:]
+		for i := 0; i < len(graph[v]); i++ {
+			if graph[front][i] == 1 && !visited[i] { // 연결되어 있고 방문하지 않은 경우
+				visited[i] = true        // 방문 표시
+				queue = append(queue, i) // 큐에 삽입
+			}
+		}
+	}
+}
+
+func resetVisited() {
 	for i := 0; i < len(visited); i++ {
-		visited[i] = make([]bool, 5)
-		for j := 0; j < len(visited[0]); j++ {
-			visited[i][j] = false
-		}
+		visited[i] = false
 	}
-
-	var q [][]int
-	q = append(q, lines[0])
-
-	for j := 0; j < len(lines); j++ {
-	}
-
-	for len(q) > 0 {
-
-		l := len(q)
-
-		for i := 0; i < l; i++ {
-			node := q[0]
-			visited[node[0]][node[1]] = true
-			visited[node[1]][node[0]] = true
-			q = q[1:]
-
-			if visited[node[0]][node[1]] || visited[node[1]][node[0]] {
-				continue
-			}
-			if node[0] == lines[i][0] {
-				q = append(q, lines[i])
-			}
-		}
-	}
-
-	// for문을 testCase 길이만큼 돌면서 num1, num2를 입력받고 합을 출력
-	// for idx := 0; idx < testCaseLength; idx++ {
-	// 	if idx == 0 {
-	// 		continue
-	// 	}
-
-	// 	fmt.Fscanln(reader, &num1, &num2)
-	// 	lines = append(lines, []int{num1, num2})
-	// }
-
-	// fmt.Fprintln(writer, num1+num2)
-
-	// writer.Flush()
 }
