@@ -74,3 +74,5 @@ func resetVisited() {
 		visited[i] = false
 	}
 }
+
+// 출처: https://plein-de-verite.tistory.com/206
