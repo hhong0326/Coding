@@ -7,6 +7,7 @@ import (
 	"sort"
 )
 
+// 우선순위 큐
 // type IntHeap []int
 
 // func (h IntHeap) Len() int           { return len(h) }
