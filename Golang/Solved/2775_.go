@@ -31,21 +31,19 @@ func main() {
 			dp[0][i] = i + 1
 		}
 
-		fmt.Println(dp)
-
 		for i := 1; i < len(dp); i++ {
 			var sum int
 			for j := 0; j < m; j++ {
 				for k := 0; k <= j; k++ {
-					fmt.Println(j, k)
+
 					sum += dp[i-1][k]
-					fmt.Println(dp[i-1][k])
 				}
 				dp[i][j] = sum
+				sum = 0
+
 			}
 		}
-
-		fmt.Println(dp[k][m-1])
+		fmt.Fprintln(w, dp[k][m-1])
 
 	}
 }
