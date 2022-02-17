@@ -7,6 +7,10 @@ import (
 	"sort"
 )
 
+var (
+	visited []int
+)
+
 func main() {
 	r := bufio.NewReader(os.Stdin)
 	w := bufio.NewWriter(os.Stdout)
@@ -26,21 +30,19 @@ func main() {
 		return arr[i][1] < arr[j][1]
 	})
 
-	answer := bfs(arr, R)
+	visited = make([]int, 100001)
 
-	for _, v := range answer {
-		fmt.Fprintln(w, v)
+	bfs(arr, R)
+
+	for i := 1; i <= n; i++ {
+		fmt.Fprintln(w, visited[i])
 	}
 }
 
-func bfs(arr [][]int, R int) []int {
+func bfs(arr [][]int, R int) {
 
-	visited := make([]bool, len(arr)+1)
-	answer := make([]int, len(arr))
-
-	visited[R] = true
-	answer[0] = R
-	count := 1
+	visited[R] = R
+	count := 2
 	q := []int{R}
 
 	for len(q) > 0 {
@@ -48,9 +50,8 @@ func bfs(arr [][]int, R int) []int {
 		q = q[1:]
 		for _, v := range arr {
 			if v[0] == node {
-				if !visited[v[1]] {
-					visited[v[1]] = true
-					answer[count] = v[1]
+				if visited[v[1]] == 0 {
+					visited[v[1]] = count
 					count++
 
 					q = append(q, v[1])
@@ -58,6 +59,4 @@ func bfs(arr [][]int, R int) []int {
 			}
 		}
 	}
-
-	return answer
 }
