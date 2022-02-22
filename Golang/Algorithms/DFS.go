@@ -2,6 +2,12 @@ package algorithms
 
 import "fmt"
 
+type TreeNode struct {
+	Val   int
+	Right *TreeNode
+	Left  *TreeNode
+}
+
 func dfsRecursive(node *TreeNode) {
 
 	if node == nil {
