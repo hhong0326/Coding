@@ -1,5 +1,11 @@
 package coding
 
+type TreeNode struct {
+	Val   int
+	Right *TreeNode
+	Left  *TreeNode
+}
+
 func zigzagLevelOrder(root *TreeNode) [][]int {
 	if root == nil {
 		return nil
