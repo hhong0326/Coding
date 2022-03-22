@@ -36,9 +36,11 @@ func main() {
 
 }
 
+// backtracking recursion
 func bt(set []string, num int) {
-	if len(set) == L {
 
+	// end condition
+	if len(set) == L {
 		newSet := strings.Join(set, "")
 		if !check(newSet) {
 			return
