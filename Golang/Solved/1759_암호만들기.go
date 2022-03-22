@@ -32,19 +32,6 @@ func main() {
 		return list[i] < list[j]
 	})
 
-	var vlist []string
-	var clist []string
-
-	for i := 0; i < len(list); i++ {
-
-		switch list[i] {
-		case "a", "e", "i", "o", "u":
-			vlist = append(vlist, list[i])
-		default:
-			clist = append(clist, list[i])
-		}
-	}
-
 	bt([]string{}, 0)
 
 }
