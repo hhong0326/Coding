@@ -41,6 +41,7 @@ func main() {
 		}
 	}
 
+	// 한 번 탐색할 때마다 겉 치즈를 녹임
 	bfs := func() bool {
 
 		visited[0][0] = true
