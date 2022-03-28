@@ -77,8 +77,6 @@ func rotate2() {
 		}
 	}
 
-	// fmt.Println(temp)
-
 	for i := 0; i < N; i++ {
 		for j := 0; j < M; j++ {
 			graph[i][j] = temp[i][j]
