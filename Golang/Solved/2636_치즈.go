@@ -30,11 +30,9 @@ func main() {
 	fmt.Fscanf(r, "%d %d\n", &N, &M)
 
 	dishes = make([][]int, N)
-	visited = make([][]bool, N)
 
 	for i := 0; i < N; i++ {
 		dishes[i] = make([]int, M)
-		visited[i] = make([]bool, M)
 		for j := 0; j < M; j++ {
 			fmt.Fscanf(r, "%d ", &dishes[i][j])
 
