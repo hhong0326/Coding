@@ -42,8 +42,6 @@ func main() {
 		counts[i] = R % counts[i]
 	}
 
-	fmt.Println(counts)
-
 	rotate2()
 
 	for i := 0; i < N; i++ {
