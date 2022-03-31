@@ -8,7 +8,7 @@ import (
 
 var (
 	N, M, R int
-	graph   [301][301]int
+	graph   [101][101]int
 )
 
 func main() {
@@ -67,36 +67,46 @@ func main() {
 
 // caluculate1 is changing top bottom
 func calculate1() {
-	for i, j := 0, N-1; i < N/2; i, j = i+1, j-1 {
-		for k := 0; k < M; k++ {
-			temp := graph[i][k]
-			graph[i][k] = graph[j][k]
-			graph[j][k] = temp
+
+	temp := [101][101]int{}
+
+	for i := 0; i < N; i++ {
+		for j := 0; j < M; j++ {
+			temp[i][j] = graph[N-1-i][j]
+		}
+	}
+	for i := 0; i < N; i++ {
+		for j := 0; j < M; j++ {
+			graph[i][j] = temp[i][j]
 		}
 	}
 }
 
 func calculate2() {
 
-	for k := 0; k < N; k++ {
-		for i, j := 0, M-1; i < M/2; i, j = i+1, j-1 {
-			temp := graph[k][i]
-			graph[k][i] = graph[k][j]
-			graph[k][j] = temp
+	temp := [101][101]int{}
 
+	for i := 0; i < N; i++ {
+		for j := 0; j < M; j++ {
+			temp[i][j] = graph[i][M-1-j]
+		}
+	}
+	for i := 0; i < N; i++ {
+		for j := 0; j < M; j++ {
+			graph[i][j] = temp[i][j]
 		}
 	}
 }
 
 func calculate3() {
 
-	temp := [301][301]int{}
+	temp := [101][101]int{}
 
 	h := N
 
-	tmp := M
-	M = N
-	N = tmp
+	tmp := N
+	N = M
+	M = tmp
 
 	for i := 0; i < N; i++ {
 		for j := 0; j < M; j++ {
@@ -106,15 +116,14 @@ func calculate3() {
 
 	for i := 0; i < N; i++ {
 		for j := 0; j < M; j++ {
-			if temp[i][j] != 0 {
-				graph[i][j] = temp[i][j]
-			}
+			graph[i][j] = temp[i][j]
+
 		}
 	}
 }
 
 func calculate4() {
-	temp := [301][301]int{}
+	temp := [101][101]int{}
 
 	w := M
 	tmp := M
@@ -130,84 +139,101 @@ func calculate4() {
 
 	for i := 0; i < N; i++ {
 		for j := 0; j < M; j++ {
-			if temp[i][j] != 0 {
 
-				graph[i][j] = temp[i][j]
-			}
+			graph[i][j] = temp[i][j]
 		}
 	}
 }
 
 func calculate5() {
 
-	temp := [301][301]int{}
+	temp := [101][101]int{}
 
 	n, m := N/2, M/2
 
 	for i := 0; i < n; i++ {
 		for j := 0; j < m; j++ {
-			temp[i][m+j] = graph[i][j]
+			temp[i][j+m] = graph[i][j]
 		}
 	}
 	for i := 0; i < n; i++ {
-		for j := m; j < M; j++ {
-			temp[n+i][j] = graph[i][j]
-		}
-	}
-	for i := n; i < N; i++ {
-		for j := m; j < M; j++ {
-			temp[i][j-m] = graph[i][j]
-		}
-	}
-	for i := n; i < N; i++ {
 		for j := 0; j < m; j++ {
-			temp[i-n][j] = graph[i][j]
+			temp[i+n][j+m] = graph[i][j+m]
 		}
 	}
+	for i := 0; i < n; i++ {
+		for j := 0; j < m; j++ {
+			temp[i+n][j] = graph[i+n][j+m]
+		}
+	}
+	for i := 0; i < n; i++ {
+		for j := 0; j < m; j++ {
+			temp[i][j] = graph[i+n][j]
+		}
+	}
+
+	// for i := 0; i < n; i++ {
+	// 	for j := 0; j < m; j++ {
+	// 		temp[i][m+j] = graph[i][j]
+	// 	}
+	// }
+	// for i := 0; i < n; i++ {
+	// 	for j := m; j < M; j++ {
+	// 		temp[n+i][j] = graph[i][j]
+	// 	}
+	// }
+	// for i := n; i < N; i++ {
+	// 	for j := m; j < M; j++ {
+	// 		temp[i][j-m] = graph[i][j]
+	// 	}
+	// }
+	// for i := n; i < N; i++ {
+	// 	for j := 0; j < m; j++ {
+	// 		temp[i-n][j] = graph[i][j]
+	// 	}
+	// }
 
 	for i := 0; i < N; i++ {
 		for j := 0; j < M; j++ {
-			if temp[i][j] != 0 {
 
-				graph[i][j] = temp[i][j]
-			}
+			graph[i][j] = temp[i][j]
+
 		}
 	}
 }
 
 func calculate6() {
 
-	temp := [301][301]int{}
+	temp := [101][101]int{}
 
 	n, m := N/2, M/2
 
 	for i := 0; i < n; i++ {
 		for j := 0; j < m; j++ {
+			temp[i+n][j+m] = graph[i+n][j]
+		}
+	}
+	for i := 0; i < n; i++ {
+		for j := 0; j < m; j++ {
+			temp[i][j+m] = graph[i+n][j+m]
+		}
+	}
+	for i := 0; i < n; i++ {
+		for j := 0; j < m; j++ {
 			temp[i+n][j] = graph[i][j]
 		}
 	}
-	for i := n; i < N; i++ {
+	for i := 0; i < n; i++ {
 		for j := 0; j < m; j++ {
-			temp[i][j+m] = graph[i][j]
-		}
-	}
-	for i := n; i < N; i++ {
-		for j := m; j < M; j++ {
-			temp[i-n][j] = graph[i][j]
-		}
-	}
-	for i := 0; i < N; i++ {
-		for j := m; j < M; j++ {
-			temp[i][j-m] = graph[i][j]
+			temp[i][j] = graph[i][j+m]
 		}
 	}
 
 	for i := 0; i < N; i++ {
 		for j := 0; j < M; j++ {
-			if temp[i][j] != 0 {
 
-				graph[i][j] = temp[i][j]
-			}
+			graph[i][j] = temp[i][j]
+
 		}
 	}
 
