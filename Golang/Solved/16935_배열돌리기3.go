@@ -20,10 +20,7 @@ func main() {
 
 	fmt.Fscanf(r, "%d %d %d\n", &N, &M, &R)
 
-	// graph = make([][]int, N)
-
 	for i := 0; i < N; i++ {
-		// graph[i] = make([]int, M)
 		for j := 0; j < M; j++ {
 			fmt.Fscanf(r, "%d ", &graph[i][j])
 		}
