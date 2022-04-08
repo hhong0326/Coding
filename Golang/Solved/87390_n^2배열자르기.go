@@ -1,5 +1,9 @@
 package main
 
+import (
+	"math"
+)
+
 func main() {
 	solution(3, 2, 5)
 
@@ -12,44 +16,31 @@ func solution(n int, left int64, right int64) []int {
 	// 1 2 3
 	// 2 2 3
 	// 3 3 3
-
-	// arr := make([][]int, n)
-	// for i := 0; i < n; i++ {
-	// 	arr[i] = make([]int, n)
-	// }
-
-	// for i := 0; i < n; i++ {
-	// 	for j := 0; j < n; j++ {
-	// 		arr[i][j] = i + 1
-	// 		arr[j][i] = i + 1
-	// 	}
-	// }
+	// 1 2 3 2 2 3 3 3 3
 
 	answer := []int{}
 
-	// for i := 0; i < n; i++ {
-	// 	answer = append(answer, arr[i]...)
-	// }
+	for i := left; i <= right; i++ {
+		d := float64(int(i) / n)
+		m := float64(int(i) % n)
 
-	// find pattern
-	// 1 222 33333 4444444 555555555
-	// 1234 2234 3334 4444
-
-	for i := 1; i <= n; i++ {
-		// 1 2 3 4
-		for j := 0; j < i; j++ {
-
-			answer = append(answer, i)
-		}
-
-		for j := i; j < n; j++ {
-
-			answer = append(answer, j+1)
-
-		}
+		answer = append(answer, int(math.Max(d, m)+1))
 	}
 
-	// fmt.Println(answer[left : right+1])
+	// for i := 1; i <= n; i++ {
+	// 	// 1 2 3 4
+	// 	for j := 0; j < i; j++ {
 
-	return answer[left : right+1]
+	// 		answer = append(answer, i)
+	// 	}
+
+	// 	for j := i; j < n; j++ {
+
+	// 		answer = append(answer, j+1)
+
+	// 	}
+	// }
+
+	return answer
+	// return answer[left : right+1]
 }
