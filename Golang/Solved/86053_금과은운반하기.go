@@ -59,4 +59,4 @@ func search(a, b int, g, s []int, w, t []int, mid int) bool {
 	return false
 }
 
-// 출처: https://yabmoons.tistory.com/714
+// 참고: https://yabmoons.tistory.com/714
