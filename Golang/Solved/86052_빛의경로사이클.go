@@ -33,6 +33,7 @@ func solution(grid []string) []int {
 	for i := 0; i < n; i++ {
 		visited[i] = make([][4]bool, m)
 	}
+
 	cycles := func(x, y, d int) int {
 
 		count := 0
@@ -65,6 +66,8 @@ func solution(grid []string) []int {
 
 	for i := 0; i < n; i++ {
 		for j := 0; j < m; j++ {
+
+			// input direction
 			for k := 0; k < 4; k++ {
 				if !visited[i][j][k] {
 
