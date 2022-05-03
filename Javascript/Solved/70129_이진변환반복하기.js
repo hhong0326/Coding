@@ -1,8 +1,11 @@
 function solution(s) {
     var answer = [];
     
+    var binaryCnt = 0;
+
+    var count = 0;
     while (s != "1") {
-        var count = 0;
+    
         var newS = "";
         for (var i=0; i<s.length; i++) {
             if (s[i] != "0") {
@@ -15,10 +18,11 @@ function solution(s) {
         var l = newS.length;
         var v = l.toString(2);
         s = "" + v
-        answer.push(count);
+        binaryCnt++;
     }
+
     
-    return answer;
+    return [binaryCnt, count];
 }
 
-console.log(solution("0111010"))
+console.log(solution("01110"))
