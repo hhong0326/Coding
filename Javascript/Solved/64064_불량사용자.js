@@ -5,7 +5,7 @@ function solution(user_id, banned_id) {
     // *을 제외하고 가능한 모든 id 찾기
     // banned의 갯수만큼 제거하는 경우의 수를 구해야함
 
-    var obj = {};
+    var obj2 = {};
     var sameMap = new Map();
     banned_id.forEach(bid => {
         
@@ -23,28 +23,43 @@ function solution(user_id, banned_id) {
                 }
 
                 if (flag) {
-                    if (obj[user_id[i]]) {
-                        obj[user_id[i]].push(bid)
+
+                    if (obj2[bid]) {
+                        if (!obj2[bid].includes(user_id[i])) {
+                            obj2[bid].push(user_id[i])
+                        }
                     } else {
-                        obj[user_id[i]] = [bid]
+                        obj2[bid] = [user_id[i]]
                     }
                 }
             }
         }
     });
-
-    console.log(obj)
+    console.log(obj2)
     console.log(sameMap)
 
-    var len = banned_id.length;
-    
-
-    // 
-
-
     // 모든 경우의 수
+    var s = new Set();
+
+    function backtrack(obj, banned_id, arr = [], idx) {
+        if (idx == banned_id.length) {
+            // sort
+            arr.sort();
+            var str = arr.join(".");
+            return s.add(str);
+        } else {
+            for (var i=0; i<obj[banned_id[idx]].length; i++) {
+                if(!arr.includes(obj[banned_id[idx]][i])) {
+                    backtrack(obj2, banned_id, [...arr, obj[banned_id[idx]][i]], idx+1)
+                }
+            }
+        }
+    }
     
-    return answer;
+    backtrack(obj2, banned_id, [], 0);
+
+    return s.size;
 }
+
 
 solution(["frodo", "fradi", "crodo", "abc123", "frodoc"], ["fr*d*", "*rodo", "******", "******"]);
