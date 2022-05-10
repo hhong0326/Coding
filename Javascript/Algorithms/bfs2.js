@@ -1,6 +1,6 @@
 //BFS
 
-const graph = {
+const GRAPH = {
     A: ["B", "C"],
     B: ["A", "D"],
     C: ["A", "G", "H", "I"],
@@ -13,7 +13,7 @@ const graph = {
     J: ["I"]
   };
   
-  const bfs = (graph, startNode) => {
+  const bfs = (GRAPH, startNode) => {
     let visited = []; // 탐색을 마친 노드들
     let needVisit = []; // 탐색해야할 노드들
   
@@ -23,13 +23,13 @@ const graph = {
       const node = needVisit.shift(); // queue이기 때문에 선입선출, shift()를 사용한다.
       if (!visited.includes(node)) { // 해당 노드가 탐색된 적 없다면
         visited.push(node); 
-        needVisit = [...needVisit, ...graph[node]];
+        needVisit = [...needVisit, ...GRAPH[node]];
       }
     }
     return visited;
   };
   
-  console.log(bfs(graph, "A"));
+  console.log(bfs(GRAPH, "A"));
   // ["A", "B", "C", "D", "G", "H", "I", "E", "F", "J"] 
 
 
