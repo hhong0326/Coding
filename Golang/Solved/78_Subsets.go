@@ -20,6 +20,34 @@ func subsets(nums []int) [][]int {
 	res := make([][]int, 0)
 
 	backtrack(0, nums, nil, &res)
+
+	// ways of stack
+	type data struct {
+		idx     int
+		letters []int
+	}
+
+	s := []data{}
+	output := [][]int{}
+
+	s = append(s, data{0, []int{}})
+
+	for len(s) > 0 {
+
+		idx, letters := s[len(s)-1].idx, s[len(s)-1].letters
+		s = s[:len(s)-1]
+
+		if idx == len(nums) {
+			output = append(output, letters)
+			continue
+		}
+
+		c := nums[idx]
+
+		s = append(s, data{idx + 1, letters})
+		s = append(s, data{idx + 1, append(letters, c)})
+
+	}
 	return res
 }
 
@@ -32,31 +60,6 @@ func backtrack(index int, nums []int, cur []int, res *[][]int) {
 	backtrack(index+1, nums, cur, res)
 	backtrack(index+1, nums, append(cur, nums[index]), res)
 }
-
-// func backtrack(res [][]int, nums []int, arr []int, cnt int, m map[string]bool) {
-// 	if cnt == len(nums) {
-// 		res = append(res, arr)
-// 		return
-// 	}
-
-// 	var str string
-// 	for _, v := range arr {
-// 		s := strconv.Itoa(v)
-// 		str += s
-// 	}
-
-// 	if _, ok := m[str]; !ok {
-// 		res = append(res, arr)
-// 		m[str] = true
-// 	}
-
-// 	arr = append(arr, nums[cnt])
-// 	fmt.Println(arr)
-// 	cnt += 1
-
-// 	backtrack(res, nums, arr, cnt, m)
-
-// }
 
 func main() {
 	res := subsets([]int{1, 2, 3})
