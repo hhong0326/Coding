@@ -6,17 +6,6 @@ import (
 
 func subsets(nums []int) [][]int {
 
-	// m := make(map[string]bool, 0)
-
-	// res := [][]int{}
-
-	// fmt.Println(res)
-
-	// sort.Ints(nums)
-
-	// backtrack(res, nums, []int{}, 0, m)
-	// return res
-
 	res := make([][]int, 0)
 
 	backtrack(0, nums, nil, &res)
@@ -67,3 +56,4 @@ func main() {
 }
 
 // 참고: https://leetcode.com/problems/subsets/discuss/549771/go-backtrack
+// https://www.youtube.com/watch?v=gVijWUHWzAU

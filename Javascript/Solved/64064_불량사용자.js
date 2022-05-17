@@ -4,7 +4,7 @@ function solution(user_id, banned_id) {
 
     // *을 제외하고 가능한 모든 id 찾기
     // banned의 갯수만큼 제거하는 경우의 수를 구해야함
-
+    
     var obj2 = {};
     var sameMap = new Map();
     banned_id.forEach(bid => {

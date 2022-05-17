@@ -1,6 +1,6 @@
 package coding
 
-func numIslands(grid [][]byte) int {
+func nums(grid [][]byte) int {
 
 	count := 0
 	for i := 0; i < len(grid); i++ {
