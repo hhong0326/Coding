@@ -122,7 +122,7 @@ func main() {
 		wg.Add(1)
 		go func(num int) {
 			defer wg.Done()
-			fmt.Printf("%d ", num)
+			fmt.Printf("%d ", num) // Go루틴 실행 순서에 따라 배열의 순서가 출력에 보장되지는 않음
 		}(num)
 	}
 	wg.Wait()
