@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 // 닫힘을 의미하는 Closure
 
@@ -86,8 +89,46 @@ func main() {
 	// init
 	newInts := intSeq()
 	fmt.Println(newInts())
+
+	// Closure with Go routine
+	// 외부 변수의 값을 복사하지 않고 주소를 참조함
+	var wg sync.WaitGroup
+	val := "memory 1"
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		val = "memory 2"
+	}()
+	wg.Wait()
+	fmt.Println(val) // memory 2
+
+	// 주소를 참조하기 때문에 합류지점 (go 루틴에 값 복사)을 정해주지 않는다면
+	// 일반적으로 for문의 고루틴이 시작도 하기전에
+	// 메인 고루틴이 종료된다.
+	// loop variable num captured by func literal
+	for _, num := range []int{1, 2, 3} {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			// Heap 메모리 영역에 슬라이스의 마지막 값 (3)이
+			// 저장돼 있기 때문에 마지막 값(3)만 반복 출력
+			fmt.Printf("%d ", num)
+		}()
+	}
+	wg.Wait()
+
+	// ->
+	for _, num := range []int{1, 2, 3} {
+		wg.Add(1)
+		go func(num int) {
+			defer wg.Done()
+			fmt.Printf("%d ", num)
+		}(num)
+	}
+	wg.Wait()
 }
 
 // Reference
 // https://judo0179.tistory.com/86
 // https://roy-jang.tistory.com/31?category=963134
+// https://roy-jang.tistory.com/41?category=963134
