@@ -5,48 +5,48 @@ import (
 	"sort"
 )
 
-type Item struct {
-	request, process, index int
-}
+// type Item struct {
+// 	request, process, index int
+// }
 
-type PriorityQueue []*Item
+// type PriorityQueue []*Item
 
-func (pq PriorityQueue) Len() int {
-	return len(pq)
-}
+// func (pq PriorityQueue) Len() int {
+// 	return len(pq)
+// }
 
-func (pq PriorityQueue) Less(i, j int) bool {
-	prev := pq[i]
-	next := pq[j]
+// func (pq PriorityQueue) Less(i, j int) bool {
+// 	prev := pq[i]
+// 	next := pq[j]
 
-	if prev.process == next.process {
-		return prev.request < next.request
-	}
+// 	if prev.process == next.process {
+// 		return prev.request < next.request
+// 	}
 
-	return prev.process < next.process
-}
+// 	return prev.process < next.process
+// }
 
-func (pq *PriorityQueue) Pop() interface{} {
-	old := *pq
-	n := len(old)
-	item := old[n-1]
-	item.index = -1
-	*pq = old[0 : n-1]
-	return item
-}
+// func (pq *PriorityQueue) Pop() interface{} {
+// 	old := *pq
+// 	n := len(old)
+// 	item := old[n-1]
+// 	item.index = -1
+// 	*pq = old[0 : n-1]
+// 	return item
+// }
 
-func (pq *PriorityQueue) Push(x interface{}) {
-	n := len(*pq)
-	item := x.(*Item)
-	item.index = n
-	*pq = append(*pq, item)
-}
+// func (pq *PriorityQueue) Push(x interface{}) {
+// 	n := len(*pq)
+// 	item := x.(*Item)
+// 	item.index = n
+// 	*pq = append(*pq, item)
+// }
 
-func (pq PriorityQueue) Swap(i, j int) {
-	pq[i], pq[j] = pq[j], pq[i]
-	pq[i].index = i
-	pq[j].index = j
-}
+// func (pq PriorityQueue) Swap(i, j int) {
+// 	pq[i], pq[j] = pq[j], pq[i]
+// 	pq[i].index = i
+// 	pq[j].index = j
+// }
 
 // func solution(jobs [][]int) int {
 //     jobsLen := len(jobs)
