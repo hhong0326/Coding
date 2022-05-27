@@ -2,8 +2,10 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -27,7 +29,7 @@ func main() {
 
 	// 탑의 번호 = 인덱스 + 1
 
-	res := make([]int, len(arr))
+	// res := make([]int, len(arr))
 
 	// for i := len(arr) - 1; i >= 1; i-- {
 
@@ -60,26 +62,60 @@ func main() {
 
 	// front first
 
+	// for i := 1; i < N; i++ {
+	// 	prev := i - 1
+	// 	for prev >= 0 {
+	// 		if arr[i] == arr[prev] {
+	// 			res[i] = res[prev] // 수신한 탑의 번호를 송신 탑에 씀
+	// 			break
+	// 		} else if arr[i] > arr[prev] { // 이전 수신한 탑과 다시 비교한다
+	// 			prev = res[prev] - 1
+	// 		} else { // arr[i] < arr[prev] // 현재 탑은 이전 탑이 수신한다
+	// 			res[i] = prev + 1
+	// 			break
+	// 		}
+
+	// 	}
+	// }
+
+	// for _, v := range res {
+
+	// 	fmt.Fprintf(w, "%d ", v)
+	// }
+
+	// stack
+
+	s := []int{arr[0]}
+	idxs := []int{1}
+
+	var answer bytes.Buffer
+	// 마지막은 무조건 0
+	answer.WriteString("0 ")
+
 	for i := 1; i < N; i++ {
-		prev := i - 1
-		for prev >= 0 {
-			if arr[i] == arr[prev] {
-				res[i] = res[prev] // 수신한 탑의 번호를 송신 탑에 씀
-				break
-			} else if arr[i] > arr[prev] { // 이전 수신한 탑과 다시 비교한다
-				prev = res[prev] - 1
-			} else { // arr[i] < arr[prev] // 현재 탑은 이전 탑이 수신한다
-				res[i] = prev + 1
+
+		for len(s) > 0 {
+			top := s[len(s)-1]
+
+			if top > arr[i] {
+				answer.WriteString(strconv.Itoa(idxs[len(idxs)-1]) + " ")
 				break
 			}
 
+			s = s[:len(s)-1]
+			idxs = idxs[:len(idxs)-1]
+
 		}
+
+		if len(s) == 0 {
+			answer.WriteString("0 ")
+		}
+		s = append(s, arr[i])
+		idxs = append(idxs, i+1)
 	}
 
-	for _, v := range res {
+	fmt.Fprintln(w, answer.String())
 
-		fmt.Fprintf(w, "%d ", v)
-	}
 }
 
 // Reference
