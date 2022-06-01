@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"sync"
+	"time"
 )
 
 func generate(nums ...int) <-chan int {
@@ -50,6 +52,18 @@ func merge(cs ...<-chan int) <-chan int {
 }
 
 func main() {
+
+	start2 := time.Now()
+	inputChan2 := generate(2, 3, 4)
+
+	resultChan := square(inputChan2)
+
+	for n := range resultChan {
+		fmt.Println(n)
+	}
+	fmt.Println(time.Since(start2))
+
+	start := time.Now()
 	inputChan := generate(2, 3, 4)
 
 	c1 := square(inputChan)
@@ -60,5 +74,9 @@ func main() {
 		fmt.Println(output) // 작업 순서가 보장되지 않는다
 
 	}
+
+	fmt.Println(time.Since(start))
+
+	fmt.Println("남은 고루틴 갯수:", runtime.NumGoroutine())
 
 }
