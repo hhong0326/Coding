@@ -24,7 +24,32 @@ gRPC Server < gRPC Stub...(clients)
 (Proto Response) ->
 client와 server에 stub를 생성하고 정의된 IDL을 토대로 request/response를 생성하여 통신합니다.
 
-## Protocol buffer IDL 정의 
+## Protocol buffer IDL 정의 (.proto 파일 작성)
+직렬화할 정보를 구조화하기 위해 .proto 파일에 protocol buffer message 타입을 정의한다. 각 protocol buffer message는 작은 논리적 정보 단위로서, 이름-값 쌍들을 포함하고 있다. 메시지 타입은 하나 이상의 유일한 숫자 필드를 가지고 있고, 각 필드는 이름과 값 타입을 가지고 있는데, 여기서 값 타입은 기본적인 타입 뿐만 아니라 다른 protocol buffer message 타입이 될 수 있다. 그리고 데이터를 계층적으로 구조화할 수도 있다. 
+
+```
+message Person {
+    required string name = 1;
+    required int32 id = 2;
+    optional string email = 3;
+
+    enum PhoneType {
+        MOBILE = 0;
+        HOME = 1;
+        WORK = 2;
+    }
+
+    message PhoneNumber {
+        required string number = 1;
+        optional PhoneType type = 2 [default = HOME];
+    }
+
+    repeated PhoneNumber phone = 4;
+}
+```
+
+message가 정의되고 나면, 데이터에 접근할 수 있는 클래스를 만들기 위해 .proto 파일에 protocol buffer 컴파일러를 실행시킨다. 이렇게 만들어진 클래스는 각 필드를 위한 간단한 접근자(name()과 set_name() 같은) 뿐만 아니라 전체 구조를 생 바이트로 직렬화하거나 생 바이트로부터 전체 구조를 파싱하는 메서드들을 제공한다. 예를 들어, 여러분이 언어로 C++을 선택했다면, 위 예제에 대해서 컴파일러는 실행시키면 Person이라는 클래스가 생성될 것이다. 그러면 다음과 같이 코드를 작성할 수 있다.
+
 
 
 * reference
