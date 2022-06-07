@@ -13,7 +13,7 @@ HOL(Head Of Line) Blocking-특정응답지연, RTT(Round Trip TIme) 증가, 헤�
 그렇게 고군분투 하던 중, HTTP2가 세상에 소개되었습니다. HTTP2는 성능 뿐만 아니라 속도면에서도 월등한 녀석입니다. Multiplexed Streams(한 커넥션에 여러개의 메세지를 동시에 주고 받을 수 있음), Stream Prioritization(요청 리소스간 의존관계를 설정), Server Push(HTML문서상에 필요한 리소스를 클라이언트 요청없이 보내줄 수 있음), Header Compression(Header 정보를 HPACK압충방식을 이용하여 압축전송)을 사용하여 선을을 획기적으로 향상 시켰습니다. 
 (출처: https://medium.com/@shlee1353/http1-1-vs-http2-0-%EC%B0%A8%EC%9D%B4%EC%A0%90-%EA%B0%84%EB%8B%A8%ED%9E%88-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0-5727b7499b78)
 
-## Fetures
+## Features
 
 - 낮은 데이터 payload: gRPC는 binary 기반으로 통신하기 때문에 효율성이 뛰어남
 - Protocol buffer의 IDL로 REST API 대비 강한 타입 체크가 가능
@@ -69,10 +69,18 @@ ProtoBuf IDL 정의만으로 server 와 client(Stub) 코드가 자동으로 생�
 (출처: https://medium.com/@goinhacker/microservices-with-grpc-d504133d191d)
 
 ## Setting
-ProtoBuf 컴파일러 설치
-go get -a github.com/golang/protobuf/protoc-gen-go
+ProtoBuf 컴파일러 설치 
+(출처: https://medium.com/@danny4410.eecs04/install-protobuf-on-m1-mac-852e4afa619f)
 
 
+**Golang protoc 설치**
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+
+**.proto 정의에 맞게 해당 언어를 위한 코드 생성**
+protoc -I=$SRC_DIR --go_out=$DST_DIR $SRC_DIR/addressbook.proto
+
+**Golang example**
+https://github.com/protocolbuffers/protobuf/tree/main/examples/go
 
 
 * reference
