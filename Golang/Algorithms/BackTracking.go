@@ -1,4 +1,4 @@
-package algorithms
+package main
 
 import (
 	"fmt"
@@ -40,4 +40,8 @@ func condition(level int) bool {
 		}
 	}
 	return true
+}
+
+func main() {
+	Queens(1)
 }
