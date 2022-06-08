@@ -22,8 +22,3 @@
 
 ### 쓰레드 통신 Go Channel (chan)
 
-## Travel Wallet part
-
-### 서비스에 대해
-
-### 
