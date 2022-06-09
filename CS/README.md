@@ -1,7 +1,7 @@
 # CS 정리 
 
 ## CS part
-- [Language Golang](##Golang-part)
+## [Language Golang](#golang-part)
 
 
 ### 네트워크
