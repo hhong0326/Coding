@@ -6,32 +6,32 @@
 
 #### OSI 7 layer
 
-![OSI 7 layer]https://blog.kakaocdn.net/dn/rOOKR/btrpUHuv9WV/0d09FTgzKuWIhrizkCWoR0/img.gif
+![OSI 7 layer](https://blog.kakaocdn.net/dn/rOOKR/btrpUHuv9WV/0d09FTgzKuWIhrizkCWoR0/img.gif)
 
 * 물리 계층(Physical Layer)
-    PDU : Bit Stream(0과 1의 연속 / 전기적 신호)
-    Protocol : Ethernet RS-232C
-    Equipment : Repeater / Hub
+    * PDU : Bit Stream(0과 1의 연속 / 전기적 신호)
+    * Protocol : Ethernet RS-232C
+    * Equipment : Repeater / Hub
 * 데이터링크 계층(Datalink Layer)
-    PDU : Frame
-    Protocol : Ethernet / HDLC / PPP / ...
-    Equipment : Bridge / L2 Switch
+    * PDU : Frame
+    * Protocol : Ethernet / HDLC / PPP / ...
+    * Equipment : Bridge / L2 Switch
 * 네트워크 계층(Network Layer)
-    PDU : Packet
-    Protocol : IP / ARP / ICMP
-    Equipment : Router / L3 Switch
+    * PDU : Packet
+    * Protocol : IP / ARP / ICMP
+    * Equipment : Router / L3 Switch
 * 전송 계층(Transport Layer)
-    PDU : Segment
-    Protocol : TCP / UDP
-    Equipment : L4 Switch, Gateway
+    * PDU : Segment
+    * Protocol : TCP / UDP
+    * Equipment : L4 Switch, Gateway
 * 세션 계층(Session Layer)
 * 표현 계층(Presentation Layer)
-    입출력 데이터를 하나의 표현 형태로 변환 (이해할 수 있는 포맷으로 변환)
-    Protocol : JPEG, MPEG, SMG, AFP
+    * 입출력 데이터를 하나의 표현 형태로 변환 (이해할 수 있는 포맷으로 변환)
+    * Protocol : JPEG, MPEG, SMG, AFP
 * 응용 계층(Application Layer)
-    PDU : Data or Message
-    Protocol : Telnet / HTTP / FTP / SSH  ...
-    Equipment : PC / Server / ...
+    * PDU : Data or Message
+    * Protocol : Telnet / HTTP / FTP / SSH  ...
+    * Equipment : PC / Server / ...
 
 ### OSI 계층별 통신 프로토콜
 
@@ -57,7 +57,11 @@
 #### HTTP *응용계층*
 - 웹 전송 통신 프로토콜 80 port
 - HTTP 1.1 -  Keep Alive Connection : 연결을 종료하지 않고 유지하기 때문에, 서비스 요청 이후에 바로 연결을 종료하지 않고 연결 대기 이후 종료
-- HTTP 2.0 -  더 빠른 데이터 처리 가능 / 멀티플렉싱(Multiplexing) : 동시 다발적 양방향 통신 / 헤더압축(Header Compression) : 헤더 정보를 1/3 수준으로 압축 / 서버푸시(Server Push) : 웹 서버가 웹 브라우저에게 필요한 데이터를 알아서 미리 전송
+- HTTP 2.0 
+    - 더 빠른 데이터 처리 가능 
+    - 멀티플렉싱(Multiplexing) : 동시 다발적 양방향 통신
+    - 헤더압축(Header Compression) : 헤더 정보를 1/3 수준으로 압축
+    - 서버푸시(Server Push) : 웹 서버가 웹 브라우저에게 필요한 데이터를 알아서 미리 전송
 #### SSH *응용계층*
 - 원격 접속 프로토콜 Telnet -> 보안성을 위해 사용 22 port
 
