@@ -32,7 +32,7 @@
     Equipment : PC / Server / ...
 
 ### 통신 프로토콜
-* IP(Internet Protocol): TCP/IP 네트워크에서 출발지, 목적지 주소를 지정하는 프로토콜
+#### IP(Internet Protocol): TCP/IP 네트워크에서 출발지, 목적지 주소를 지정하는 프로토콜
 - Packet의 목적지 주소를 보고 최적의 경로를 찾아 패킷을 전송해주는게 주된 역할
 - 신뢰성이 없고 비연결 지향적임(신뢰성보다는 효율성에 중점)
 
