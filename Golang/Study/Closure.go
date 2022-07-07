@@ -22,7 +22,8 @@ func basic() {
 	}
 
 	f()
-
+	fmt.Println(val)
+	f()
 	fmt.Println(val)
 }
 
@@ -123,7 +124,7 @@ func main() {
 		go func(num int) {
 			defer wg.Done()
 			fmt.Printf("%d ", num) // Go루틴 실행 순서에 따라 배열의 순서가 출력에 보장되지는 않음
-		}(num)
+		}(num) // 참조에 의한 값 전달이 아니라 직접 복사해 주면 된다
 	}
 	wg.Wait()
 }
