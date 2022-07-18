@@ -5,6 +5,8 @@ import (
 	"fmt"
 )
 
+// 완전이진탐색 트리는 다 O(logN) 보장
+
 // Heap은 그래프의 트리 구조 중 하나로 '우선순의 큐'를 구현할 때 사용된다.
 // Heap을 표현하는 트리 구조에서는 각 정점을 '노드'라고 부른다.
 // 자식 노드의 숫자는 반드시 부모 숫자보다 커야한다는 규칙이 있다.
@@ -68,7 +70,8 @@ func main() {
 	// golang의 container/heap이라는 내장 라이브러리를 활용한 minHeap 구현
 	h := &IntHeap{2, 1, 5}
 
-	heap.Init(h)
+	heap.Init(h) // 자동 정리
+	fmt.Println(h)
 	heap.Push(h, 3)
 	fmt.Printf("minimum: %d\n", (*h)[0])
 	for h.Len() > 0 {

@@ -30,3 +30,5 @@ func main() {
 	fmt.Println(arr)
 	fmt.Println(InsertSort(arr))
 }
+
+// https://gmlwjd9405.github.io/2018/05/06/algorithm-insertion-sort.html
